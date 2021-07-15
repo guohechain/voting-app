@@ -6,6 +6,9 @@ WORKDIR /app
 
 # Install our requirements.txt
 ADD requirements.txt /app/requirements.txt
+RUN apk update && apk add curl bind-tools 
+RUN dig mirrors.aliyun.com && curl -v https://mirrors.aliyun.com/pypi/simple/ 
+
 RUN pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 # Copy our code from the current folder to /app inside the container
